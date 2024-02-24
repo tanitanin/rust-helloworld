@@ -4,8 +4,15 @@ use windows::{
     Web::Syndication::SyndicationClient,
 };
 
-fn main() -> Result<()> {
-    let _uri = Uri::CreateUri(h!("https://blogs.windows.com/feed"))?;
+fn main() -> Result<(), > {
+    let mut args = std::env::args();
+    println!("{:?}", args);
+
+    let mut _default_uri = "https://blogs.windows.com/feed";
+    let arg_uri = args.nth(1).unwrap_or(_default_uri.to_string());
+
+    let hs_arg_uri = HSTRING::from(arg_uri);
+    let _uri = Uri::CreateUri(&hs_arg_uri)?;
     let _client = SyndicationClient::new()?;
 
     _client.SetRequestHeader(
