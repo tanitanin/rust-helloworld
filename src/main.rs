@@ -1,17 +1,22 @@
+use clap::Parser;
 use windows::{
     core::*,
     Foundation::Uri,
     Web::Syndication::SyndicationClient,
 };
 
+#[derive(Parser, Debug)]
+#[command(author, version, about, long_about = None)]
+struct Cli {
+    #[arg(short, long, default_value = "https://blogs.windows.com/feed")]
+    uri: String,
+}
+
 fn main() -> Result<(), > {
-    let mut args = std::env::args();
-    println!("{:?}", args);
+    println!("{:?}", std::env::args());
+    let args = Cli::parse();
 
-    let mut _default_uri = "https://blogs.windows.com/feed";
-    let arg_uri = args.nth(1).unwrap_or(_default_uri.to_string());
-
-    let hs_arg_uri = HSTRING::from(arg_uri);
+    let hs_arg_uri = HSTRING::from(args.uri);
     let _uri = Uri::CreateUri(&hs_arg_uri)?;
     let _client = SyndicationClient::new()?;
 
