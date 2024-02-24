@@ -2,6 +2,10 @@
 name = "rust-helloworld"
 version = "0.1.0"
 edition = "2021"
+description = "Hello, Rust World"
+readme = "README.md"
+homepage = "https://github.com/tanitanin/rust-helloworld"
+repository = "https://github.com/tanitanin/rust-helloworld"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
